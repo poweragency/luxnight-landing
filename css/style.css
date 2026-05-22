@@ -577,7 +577,29 @@ em { font-style: italic; font-family: var(--font-display); }
 }
 .split__media picture img:hover,
 .split__media > img:hover { filter: grayscale(.55) brightness(.78) contrast(1.05) sepia(.1); }
-.split__text .prose { font-size: 1.15rem; }
+.split__text .prose { font-size: 1.15rem; margin: 0 0 28px; }
+.split__text .prose:last-of-type { margin-bottom: 0; }
+
+/* Drop cap on the first paragraph of the "Il luogo" split text */
+#luogo .split__text .prose:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 3.4em;
+  line-height: 0.88;
+  float: left;
+  padding: 0.08em 0.14em 0 0;
+  color: var(--champagne);
+}
+
+/* Ornament between the two prose blocks of "Il luogo" */
+.prose-divider {
+  margin: 36px 0;
+  text-align: center;
+  opacity: .9;
+}
+.prose-divider .ornament {
+  margin: 0;
+}
 
 /* ============ Map frame ============ */
 .map-frame {
@@ -1450,6 +1472,12 @@ body.legal::before, body.legal::after { display: none; }
   .disclaimer { margin-top: 24px; }
 
   .meta-list { grid-template-columns: 1fr; gap: 20px; margin-top: 32px; }
+
+  /* Più aria tra paragrafi nelle sezioni split su mobile */
+  .split__text .prose { font-size: 1.05rem; line-height: 1.75; margin: 0 0 24px; }
+  .prose-divider { margin: 28px 0; }
+  .prose-divider .ornament { width: 56px; opacity: .7; }
+  #luogo .split__text .prose:first-of-type::first-letter { font-size: 3em; padding-right: 0.12em; }
 
   /* Bottom action bar + newsletter (mobile) */
   body { padding-bottom: 78px; }
