@@ -7,6 +7,11 @@
 <title>Lux Night — Private Club · Balerna, Ticino</title>
 <meta name="description" content="Lux Night. Un club privato nel cuore del Ticino. Per inviti, su prenotazione. Via San Gottardo 111, Balerna.">
 <meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.luxnight.ch/">
+<link rel="alternate" hreflang="it" href="https://www.luxnight.ch/">
+<link rel="alternate" hreflang="en" href="https://www.luxnight.ch/en/">
+<link rel="alternate" hreflang="de" href="https://www.luxnight.ch/de/">
+<link rel="alternate" hreflang="x-default" href="https://www.luxnight.ch/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lux Night">
@@ -44,10 +49,13 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "NightClub",
+  "@type": ["NightClub", "BarOrPub"],
+  "@id": "https://www.luxnight.ch/#club",
   "name": "Lux Night",
+  "alternateName": "LUX NIGHT",
   "description": "Private club in Balerna, Canton Ticino. By invitation, by reservation.",
   "image": "https://www.luxnight.ch/assets/brand/og.png",
+  "logo": "https://www.luxnight.ch/assets/brand/favicon-192.png",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Via San Gottardo 111",
@@ -56,14 +64,32 @@
     "addressRegion": "Ticino",
     "addressCountry": "CH"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 45.8492,
+    "longitude": 9.0008
+  },
   "telephone": "+41916825559",
   "email": "info@luxnight.ch",
-  "url": "https://www.luxnight.ch",
+  "url": "https://www.luxnight.ch/",
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday","Thursday"], "opens": "22:00", "closes": "04:00" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "22:00", "closes": "05:00" }
   ],
   "priceRange": "$$$$",
+  "currenciesAccepted": "CHF, EUR",
+  "paymentAccepted": "Cash, Credit Card",
+  "availableLanguage": ["it", "en", "de"],
+  "smokingAllowed": false,
+  "publicAccess": false,
+  "isAccessibleForFree": false,
+  "maximumAttendeeCapacity": 60,
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Parcheggio gratuito", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Accessibilità disabili", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Sale private", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Carte di credito accettate", "value": true }
+  ],
   "sameAs": [
     "https://www.instagram.com/luxnight.ch/",
     "https://www.facebook.com/LuxNightBalerna/",
