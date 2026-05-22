@@ -39,6 +39,39 @@
     });
   });
 
+  /* ---------- Language dropdown ---------- */
+  const langSwitch = document.querySelector('[data-lang-switch]');
+  if (langSwitch) {
+    const btn  = langSwitch.querySelector('.lang-switch__current');
+    const menu = langSwitch.querySelector('.lang-switch__menu');
+    let hideTimer = null;
+
+    const setOpen = (open) => {
+      btn.setAttribute('aria-expanded', String(open));
+      langSwitch.setAttribute('data-open', String(open));
+      if (open) {
+        if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+        menu.hidden = false;
+      } else {
+        // delay hiding until the fade-out transition has played
+        hideTimer = setTimeout(() => { menu.hidden = true; hideTimer = null; }, 260);
+      }
+    };
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      setOpen(!isOpen);
+    });
+    document.addEventListener('click', (e) => {
+      if (!langSwitch.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  }
+
   /* ---------- Year ---------- */
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
