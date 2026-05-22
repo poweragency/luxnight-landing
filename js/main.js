@@ -1,24 +1,6 @@
 (() => {
   'use strict';
 
-  /* ---------- Age gate ---------- */
-  const ageGate = document.getElementById('age-gate');
-  const ageYes  = document.getElementById('age-yes');
-  const KEY = 'luxnight_age_ok';
-
-  if (ageGate) {
-    if (sessionStorage.getItem(KEY) === '1') {
-      ageGate.classList.add('is-hidden');
-    } else {
-      document.body.style.overflow = 'hidden';
-    }
-    ageYes?.addEventListener('click', () => {
-      sessionStorage.setItem(KEY, '1');
-      ageGate.classList.add('is-hidden');
-      document.body.style.overflow = '';
-    });
-  }
-
   /* ---------- Header on scroll ---------- */
   const header = document.getElementById('site-header');
   if (header) {

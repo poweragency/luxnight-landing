@@ -883,71 +883,6 @@ em { font-style: italic; font-family: var(--font-display); }
 .hours li.closed span,
 .hours li.closed b { color: var(--taupe); }
 
-/* ============ Age gate ============ */
-.age-gate {
-  position: fixed; inset: 0;
-  z-index: 200;
-  display: grid;
-  place-items: center;
-  background: rgba(10,8,7,.96);
-  backdrop-filter: blur(24px);
-  padding: 32px;
-  animation: fadeIn .8s var(--ease);
-}
-.age-gate.is-hidden { display: none; }
-.age-gate__inner {
-  text-align: center;
-  max-width: 480px;
-  padding: 56px 40px;
-  border: 1px solid var(--line);
-  background: var(--black-2);
-  position: relative;
-}
-.age-gate__inner::before,
-.age-gate__inner::after {
-  content: "";
-  position: absolute;
-  width: 24px; height: 24px;
-  border: 0 solid var(--champagne);
-}
-.age-gate__inner::before { top: -1px; left: -1px; border-top-width: 1px; border-left-width: 1px; }
-.age-gate__inner::after  { bottom: -1px; right: -1px; border-bottom-width: 1px; border-right-width: 1px; }
-.mark {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 18px;
-  letter-spacing: .3em;
-  color: var(--champagne);
-  margin: 0 0 24px;
-  text-transform: uppercase;
-}
-.age-gate__rule {
-  width: 32px; height: 1px;
-  background: var(--champagne);
-  margin: 0 auto 32px;
-}
-.age-gate__title {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: 1.7rem;
-  line-height: 1.25;
-  margin: 0 0 16px;
-  color: var(--cream);
-}
-.age-gate__text {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.05rem;
-  color: var(--taupe);
-  margin: 0 0 40px;
-}
-.age-gate__actions {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-}
-
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* ============ Bottom action bar ============ */
@@ -989,9 +924,6 @@ em { font-style: italic; font-family: var(--font-display); }
 .action-bar__btn:hover { background: var(--champagne); color: var(--black); }
 .action-bar__btn:focus-visible { outline: 2px solid var(--champagne); outline-offset: 2px; }
 .action-bar__btn svg { width: 15px; height: 15px; flex: 0 0 auto; }
-
-/* nasconde la action-bar quando age gate attivo */
-body:has(.age-gate:not(.is-hidden)) .action-bar { opacity: 0; pointer-events: none; transform: translate(-50%, 24px); }
 
 /* Padding al body così la action-bar non copre l'ultimo contenuto */
 body { padding-bottom: 96px; }
@@ -1339,8 +1271,6 @@ body.legal::before, body.legal::after { display: none; }
     font-size: clamp(1.55rem, 6.5vw, 2.2rem);
     line-height: 1.15;
   }
-  .age-gate__title { font-size: 1.35rem; line-height: 1.25; }
-
   /* Spazi: riduzione complessiva */
   .section { padding: 72px 0; }
   .section--manifesto { padding: 88px 0; }
@@ -1506,9 +1436,6 @@ body.legal::before, body.legal::after { display: none; }
   .lightbox__prev  { left: 12px; padding: 9px 12px; }
   .lightbox__next  { right: 12px; padding: 9px 12px; }
 
-  /* Age gate più compatto */
-  .age-gate__inner { padding: 44px 28px; }
-  .age-gate__title { font-size: 1.45rem; }
 }
 
 @media (max-width: 480px) {
