@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css?v=2">
+<link rel="stylesheet" href="css/style.css?v=3">
 
 <script type="application/ld+json">
 {
@@ -362,7 +362,7 @@
   <div class="container container--split">
     <div class="split__text">
       <p class="overline">Le ore</p>
-      <h2 class="section__title">Si entra<br>dopo le ventidue.</h2>
+      <h2 class="section__title">L'accesso comincia<br>quando la città si spegne.</h2>
       <ul class="hours">
         <li><span>Mercoledì</span><b>22:00 — 04:00</b></li>
         <li><span>Giovedì</span><b>22:00 — 04:00</b></li>
@@ -373,12 +373,31 @@
       <p class="muted small">Parcheggio gratuito sul retro · Servizio NCC su richiesta</p>
     </div>
     <div class="split__media">
-      <iframe
-        title="Mappa Lux Night"
-        src="https://www.google.com/maps?q=Via+San+Gottardo+111,+6828+Balerna,+Switzerland&output=embed"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        allowfullscreen></iframe>
+      <figure class="map-frame">
+        <span class="map-frame__corner map-frame__corner--tl" aria-hidden="true"></span>
+        <span class="map-frame__corner map-frame__corner--tr" aria-hidden="true"></span>
+        <span class="map-frame__corner map-frame__corner--bl" aria-hidden="true"></span>
+        <span class="map-frame__corner map-frame__corner--br" aria-hidden="true"></span>
+
+        <header class="map-frame__head">
+          <span class="map-frame__label">Lux Night · Balerna</span>
+          <span class="map-frame__dot" aria-hidden="true"></span>
+        </header>
+
+        <div class="map-frame__stage">
+          <iframe
+            title="Mappa Lux Night"
+            src="https://www.google.com/maps?q=Via+San+Gottardo+111,+6828+Balerna,+Switzerland&output=embed&z=15"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+
+        <footer class="map-frame__foot">
+          <span class="map-frame__coord">45°50′N · 9°00′E</span>
+          <a class="map-frame__link" href="https://www.google.com/maps/dir/?api=1&destination=Via+San+Gottardo+111,+6828+Balerna,+Switzerland" target="_blank" rel="noopener">Indicazioni ↗</a>
+        </footer>
+      </figure>
     </div>
   </div>
 </section>
@@ -443,6 +462,6 @@
   <button class="lightbox__next" aria-label="Successiva">→</button>
 </div>
 
-<script src="js/main.js?v=2" defer></script>
+<script src="js/main.js?v=3" defer></script>
 </body>
 </html>
