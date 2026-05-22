@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A0807">
+<title>Lux Night — Private Club · Balerna, Ticino</title>
+<meta name="description" content="Lux Night. Un club privato nel cuore del Ticino. Per inviti, su prenotazione. Via San Gottardo 111, Balerna.">
+<meta name="robots" content="index,follow">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lux Night — Private Club · Balerna">
+<meta property="og:description" content="Un club privato nel cuore del Ticino. Per inviti, su prenotazione.">
+<meta property="og:image" content="../assets/foto/5800914063163330411.jpg">
+<meta property="og:locale" content="it_IT">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NightClub",
+  "name": "Lux Night",
+  "description": "Private club in Balerna, Canton Ticino. By invitation, by reservation.",
+  "image": "../assets/foto/5800914063163330411.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Via San Gottardo 111",
+    "addressLocality": "Balerna",
+    "postalCode": "6828",
+    "addressRegion": "Ticino",
+    "addressCountry": "CH"
+  },
+  "telephone": "+41916825559",
+  "email": "info@luxnight.ch",
+  "url": "https://www.luxnight.ch",
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday","Thursday"], "opens": "22:00", "closes": "04:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "22:00", "closes": "05:00" }
+  ],
+  "priceRange": "$$$$",
+  "sameAs": [
+    "https://www.instagram.com/luxnight.ch/",
+    "https://www.facebook.com/LuxNightBalerna/",
+    "https://www.tiktok.com/@luxnightch"
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Age gate -->
+<div id="age-gate" class="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-gate-title">
+  <div class="age-gate__inner">
+    <p class="mark">L · N</p>
+    <div class="age-gate__rule"></div>
+    <h2 id="age-gate-title" class="age-gate__title">L'accesso è riservato<br>a persone maggiorenni.</h2>
+    <p class="age-gate__text">Confermi di aver compiuto diciotto anni.</p>
+    <div class="age-gate__actions">
+      <button class="btn btn--solid" id="age-yes">Confermo</button>
+      <a class="link link--muted" href="https://www.google.com">Esci</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="site-header" id="site-header">
+  <a href="#hero" class="brand" aria-label="Lux Night">
+    <span class="brand__mark">L · N</span>
+    <span class="brand__name">Lux Night</span>
+  </a>
+  <nav class="nav" id="nav" aria-label="Principale">
+    <a href="#manifesto">Manifesto</a>
+    <a href="#luogo">Il luogo</a>
+    <a href="#sale">Le sale</a>
+    <a href="#carta">La carta</a>
+    <a href="#ospiti">Per essere ospiti</a>
+  </nav>
+  <a class="link link--cta header__cta" href="#ospiti">Reservations</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Apri menu" aria-expanded="false" aria-controls="nav">
+    <span></span><span></span>
+  </button>
+</header>
+
+<!-- Hero -->
+<section id="hero" class="hero">
+  <div class="hero__bg" aria-hidden="true">
+    <img src="../assets/foto/5800914063163330411.jpg" alt="">
+  </div>
+  <div class="hero__veil"></div>
+
+  <div class="hero__content">
+    <p class="overline">Ticino · Svizzera · MMXVIII</p>
+    <h1 class="hero__title">
+      <span>Lux</span>
+      <em>Night</em>
+    </h1>
+    <p class="hero__lead">
+      Una porta che non si trova per caso.<br>
+      Quattro pareti che custodiscono la notte.
+    </p>
+    <div class="hero__meta">
+      <a class="link link--cta" href="#ospiti">Per essere ospiti</a>
+      <span class="hero__meta-sep">·</span>
+      <span class="overline overline--soft">By invitation</span>
+    </div>
+  </div>
+
+  <div class="hero__corner hero__corner--tl" aria-hidden="true"></div>
+  <div class="hero__corner hero__corner--tr" aria-hidden="true"></div>
+  <div class="hero__corner hero__corner--bl" aria-hidden="true"></div>
+  <div class="hero__corner hero__corner--br" aria-hidden="true"></div>
+</section>
+
+<!-- Manifesto -->
+<section id="manifesto" class="section section--manifesto">
+  <div class="container container--narrow center">
+    <p class="overline overline--center">Manifesto</p>
+    <hr class="rule rule--gold">
+    <p class="prose prose--lg">
+      <em>Lux</em>, in latino, è la luce.<br>
+      <em>Night</em>, in inglese, è la notte.<br>
+      <span class="prose__break">Un ossimoro, e una promessa.</span>
+    </p>
+    <p class="prose">
+      Esiste un'ora in cui la città dorme e qualcun altro ricomincia.
+      Lux Night è il rifugio che quella minoranza ha scelto in Ticino —
+      un luogo costruito sul silenzio della discrezione e sul calore di una luce bassa.
+      Non è una discoteca. Non è un bar. È un club privato, con una sua liturgia.
+    </p>
+    <p class="signature">— La direzione</p>
+  </div>
+</section>
+
+<!-- Il luogo -->
+<section id="luogo" class="section">
+  <div class="container container--split">
+    <div class="split__media">
+      <img src="../assets/foto/5800914063163330409.jpg" alt="La sala principale di Lux Night, archi illuminati di rosso scuro" loading="lazy">
+    </div>
+    <div class="split__text">
+      <p class="overline">Il luogo</p>
+      <h2 class="section__title">Dentro una<br>porta sola.</h2>
+      <p class="prose">
+        Una palazzina anonima a Balerna, un'insegna che non si concede al passante.
+        All'interno, archi in mattoni che sopravvivono al tempo, divani capitonné,
+        pavimenti scuri come laghi notturni. Nulla è gridato; tutto è preciso.
+      </p>
+      <p class="prose">
+        Si entra dopo le ventidue, si rimane finché serve.
+        Il personale conosce il vostro nome prima di voi.
+      </p>
+      <dl class="meta-list">
+        <div><dt>Indirizzo</dt><dd>Via San Gottardo 111<br>6828 Balerna · CH</dd></div>
+        <div><dt>Da Milano</dt><dd>Cinquantotto minuti d'auto.<br>Uscita Chiasso.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- Le sale -->
+<section id="sale" class="section section--dark">
+  <div class="container">
+    <header class="section__header center">
+      <p class="overline overline--center">Le sale</p>
+      <h2 class="section__title">Quattro stanze,<br>quattro silenzi.</h2>
+      <hr class="rule rule--gold rule--center">
+    </header>
+
+    <div class="rooms">
+      <article class="room">
+        <figure class="room__media">
+          <img src="../assets/foto/5800914063163330411.jpg" alt="Sala principale, arco in mattoni illuminato" loading="lazy">
+        </figure>
+        <div class="room__text">
+          <p class="overline">I — Sala principale</p>
+          <h3>Il salone</h3>
+          <p>L'ambiente conviviale del club. Archi in pietra, divani in pelle bianca, una luce calda che non lascia spazio alla confusione. Qui si arriva e si sceglie il proprio ritmo per la notte.</p>
+        </div>
+      </article>
+
+      <article class="room room--reverse">
+        <figure class="room__media">
+          <img src="../assets/foto/5800914063163330400.jpg" alt="Privé Rosa, divano scuro, illuminazione neon morbida" loading="lazy">
+        </figure>
+        <div class="room__text">
+          <p class="overline">II — Privé Rosa</p>
+          <h3>La camera intima</h3>
+          <p>Una sala riservata di tonalità calde, pensata per le compagnie più ristrette. Servizio dedicato, porta chiusa, conversazione protetta. Si accede su prenotazione.</p>
+        </div>
+      </article>
+
+      <article class="room">
+        <figure class="room__media">
+          <img src="../assets/foto/5800914063163330396.jpg" alt="Privé Rosso con tenda e illuminazione cremisi" loading="lazy">
+        </figure>
+        <div class="room__text">
+          <p class="overline">III — Privé Blu</p>
+          <h3>La camera cremisi</h3>
+          <p>Una tenda, un divano, una lampada sola. La stanza per le occasioni che richiedono un'eleganza più severa: anniversari, accordi, congedi. Riservatezza assoluta.</p>
+        </div>
+      </article>
+
+      <article class="room room--reverse">
+        <figure class="room__media">
+          <img src="../assets/foto/5800914063163330405.jpg" alt="Lounge con divani bianchi e bar sullo sfondo" loading="lazy">
+        </figure>
+        <div class="room__text">
+          <p class="overline">IV — Il bar</p>
+          <h3>Il banco</h3>
+          <p>Il cuore tecnico del club. Distillati nelle linee Silver, Gold e Platinum; champagne di maison verificate; un bartender che ricorda i vostri preferiti dalla volta precedente.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- La carta -->
+<section id="carta" class="section">
+  <div class="container">
+    <header class="section__header center">
+      <p class="overline overline--center">La carta</p>
+      <h2 class="section__title">Una selezione,<br>non un catalogo.</h2>
+      <hr class="rule rule--gold rule--center">
+      <p class="prose prose--center">
+        La carta è breve di proposito. Pochi distillati, scelti uno per uno; champagne di maison verificate; magnum per le occasioni in cui la sera diventa una notte.
+      </p>
+    </header>
+
+    <div class="carta">
+      <div class="carta__col">
+        <h3 class="carta__h">Champagne</h3>
+        <ul class="carta__list">
+          <li><span>Moët &amp; Chandon</span><b>CHF 250</b></li>
+          <li><span>Ruinart Brut</span><b>CHF 350</b></li>
+          <li><span>Ruinart Blanc de Blancs</span><b>CHF 500</b></li>
+          <li><span>Dom Pérignon Brut</span><b>CHF 750</b></li>
+          <li><span>Armand de Brignac · Ace of Spades</span><b>CHF 900</b></li>
+        </ul>
+      </div>
+
+      <div class="carta__col">
+        <h3 class="carta__h">Magnum</h3>
+        <ul class="carta__list">
+          <li><span>Moët &amp; Chandon</span><b>CHF 400</b></li>
+          <li><span>Bellavista</span><b>CHF 400</b></li>
+          <li><span>Bellavista Rosé</span><b>CHF 600</b></li>
+          <li><span>Moët Ice · Rosé</span><b>CHF 600</b></li>
+        </ul>
+      </div>
+
+      <div class="carta__col">
+        <h3 class="carta__h">Distillati</h3>
+        <ul class="carta__list">
+          <li><span>Whisky</span><b>CHF 15 — 20</b></li>
+          <li><span>Rum</span><b>CHF 15 — 20</b></li>
+          <li><span>Vodka</span><b>CHF 15 — 25</b></li>
+          <li><span>Gin</span><b>CHF 15 — 25</b></li>
+          <li><span>Tequila</span><b>CHF 15</b></li>
+        </ul>
+        <p class="carta__note">Silver · Gold · Platinum</p>
+      </div>
+    </div>
+
+    <div class="carta__cta">
+      <a class="link link--cta" href="../assets/menu/240418%20LuxNight_Menu_4pg_105x210mm_H.pdf" target="_blank" rel="noopener">La carta completa, in PDF</a>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="atmosfera" class="section section--dark">
+  <div class="container">
+    <header class="section__header center">
+      <p class="overline overline--center">Frammenti</p>
+      <h2 class="section__title">Il club, in immagini.</h2>
+      <hr class="rule rule--gold rule--center">
+    </header>
+
+    <div class="gallery">
+      <a class="gallery__item gallery__item--tall" href="../assets/foto/5800914063163330411.jpg" data-lightbox>
+        <img src="../assets/foto/5800914063163330411.jpg" alt="Arco di mattoni che incornicia il salone" loading="lazy">
+      </a>
+      <a class="gallery__item" href="../assets/foto/5800914063163330401.jpg" data-lightbox>
+        <img src="../assets/foto/5800914063163330401.jpg" alt="Vista panoramica del salone" loading="lazy">
+      </a>
+      <a class="gallery__item" href="../assets/foto/5800914063163330407.jpg" data-lightbox>
+        <img src="../assets/foto/5800914063163330407.jpg" alt="Lounge interna sotto l'arco rosso" loading="lazy">
+      </a>
+      <a class="gallery__item gallery__item--wide" href="../assets/foto/5800914063163330405.jpg" data-lightbox>
+        <img src="../assets/foto/5800914063163330405.jpg" alt="Divani bianchi capitonné e bar sullo sfondo" loading="lazy">
+      </a>
+      <a class="gallery__item" href="../assets/foto/5800914063163330400.jpg" data-lightbox>
+        <img src="../assets/foto/5800914063163330400.jpg" alt="Privé Rosa" loading="lazy">
+      </a>
+      <a class="gallery__item" href="../assets/foto/5800914063163330396.jpg" data-lightbox>
+        <img src="../assets/foto/5800914063163330396.jpg" alt="Privé con tenda" loading="lazy">
+      </a>
+      <a class="gallery__item" href="../assets/foto/5800914063163330404.jpg" data-lightbox>
+        <img src="../assets/foto/5800914063163330404.jpg" alt="Dettaglio sala principale" loading="lazy">
+      </a>
+      <a class="gallery__item" href="../assets/foto/5800914063163330398.jpg" data-lightbox>
+        <img src="../assets/foto/5800914063163330398.jpg" alt="Angolo con quadro e camino" loading="lazy">
+      </a>
+      <a class="gallery__item" href="../assets/foto/5800914063163330402.jpg" data-lightbox>
+        <img src="../assets/foto/5800914063163330402.jpg" alt="Statua del David" loading="lazy">
+      </a>
+      <a class="gallery__item" href="../assets/foto/5800914063163330408.jpg" data-lightbox>
+        <img src="../assets/foto/5800914063163330408.jpg" alt="Vista sotto l'arco verso il palco" loading="lazy">
+      </a>
+      <a class="gallery__item" href="../assets/foto/5800914063163330397.jpg" data-lightbox>
+        <img src="../assets/foto/5800914063163330397.jpg" alt="Corridoio d'ingresso" loading="lazy">
+      </a>
+      <a class="gallery__item" href="../assets/foto/5800914063163330410.jpg" data-lightbox>
+        <img src="../assets/foto/5800914063163330410.jpg" alt="Porta esterna del club" loading="lazy">
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Per essere ospiti -->
+<section id="ospiti" class="section section--ospiti">
+  <div class="container container--narrow center">
+    <p class="overline overline--center">Per essere ospiti</p>
+    <hr class="rule rule--gold rule--center">
+    <h2 class="section__title">L'accesso<br>passa da una telefonata.</h2>
+    <p class="prose prose--center">
+      Lux Night non si prenota online. Si chiama, si scrive, si lascia un nome.
+      La direzione risponde personalmente, valuta la disponibilità e conferma il tavolo.
+      <em>Sempre.</em>
+    </p>
+
+    <div class="contact-block">
+      <div class="contact-block__row">
+        <p class="overline overline--soft">Telefono</p>
+        <p class="contact-block__value"><a href="tel:+41916825559">+41 91 682 55 59</a></p>
+      </div>
+      <hr class="rule rule--thin">
+      <div class="contact-block__row">
+        <p class="overline overline--soft">WhatsApp</p>
+        <p class="contact-block__value"><a href="https://wa.me/41916825559?text=Buonasera%2C%20vorrei%20prenotare%20un%20tavolo%20al%20Lux%20Night." target="_blank" rel="noopener">+41 91 682 55 59</a></p>
+      </div>
+      <hr class="rule rule--thin">
+      <div class="contact-block__row">
+        <p class="overline overline--soft">Email</p>
+        <p class="contact-block__value"><a href="mailto:info@luxnight.ch">info@luxnight.ch</a></p>
+      </div>
+    </div>
+
+    <p class="muted small disclaimer">
+      Per eventi privati, ricorrenze e ospitalità su misura,<br>contattare direttamente la direzione.
+    </p>
+  </div>
+</section>
+
+<!-- Orari + mappa -->
+<section id="orari" class="section section--dark">
+  <div class="container container--split">
+    <div class="split__text">
+      <p class="overline">Le ore</p>
+      <h2 class="section__title">Si entra<br>dopo le ventidue.</h2>
+      <ul class="hours">
+        <li><span>Mercoledì</span><b>22:00 — 04:00</b></li>
+        <li><span>Giovedì</span><b>22:00 — 04:00</b></li>
+        <li><span>Venerdì</span><b>22:00 — 05:00</b></li>
+        <li><span>Sabato</span><b>22:00 — 05:00</b></li>
+        <li class="closed"><span>Domenica</span><b>—</b></li>
+        <li class="closed"><span>Lunedì</span><b>—</b></li>
+        <li class="closed"><span>Martedì</span><b>—</b></li>
+      </ul>
+      <hr class="rule rule--thin">
+      <p class="muted small">Parcheggio gratuito sul retro · Servizio NCC su richiesta</p>
+    </div>
+    <div class="split__media">
+      <iframe
+        title="Mappa Lux Night"
+        src="https://www.google.com/maps?q=Via+San+Gottardo+111,+6828+Balerna,+Switzerland&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="brand brand--footer">
+        <span class="brand__mark">L · N</span>
+        <span class="brand__name">Lux Night</span>
+      </div>
+      <p class="footer__claim">Private club · Ticino · MMXVIII</p>
+    </div>
+
+    <hr class="rule rule--thin">
+
+    <div class="footer__grid">
+      <div>
+        <p class="overline">Il club</p>
+        <p>Via San Gottardo 111<br>6828 Balerna · Svizzera</p>
+      </div>
+      <div>
+        <p class="overline">Contatti</p>
+        <p>
+          <a href="tel:+41916825559">+41 91 682 55 59</a><br>
+          <a href="mailto:info@luxnight.ch">info@luxnight.ch</a>
+        </p>
+      </div>
+      <div>
+        <p class="overline">Presenze</p>
+        <p class="socials">
+          <a href="https://www.instagram.com/luxnight.ch/" target="_blank" rel="noopener">Instagram</a><br>
+          <a href="https://www.facebook.com/LuxNightBalerna/" target="_blank" rel="noopener">Facebook</a><br>
+          <a href="https://www.tiktok.com/@luxnightch" target="_blank" rel="noopener">TikTok</a>
+        </p>
+      </div>
+      <div>
+        <p class="overline">Legale</p>
+        <p>
+          <a href="#impressum">Impressum</a><br>
+          <a href="#privacy">Privacy · nLPD</a><br>
+          <a href="#cookie">Cookie</a>
+        </p>
+      </div>
+    </div>
+
+    <hr class="rule rule--thin">
+
+    <p class="footer__bottom">
+      © <span id="year"></span> Lux Night ·
+      Vietato l'accesso ai minori di diciotto anni · Bevi responsabilmente
+    </p>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <button class="lightbox__close" aria-label="Chiudi">Chiudi</button>
+  <button class="lightbox__prev" aria-label="Precedente">←</button>
+  <img class="lightbox__img" alt="">
+  <button class="lightbox__next" aria-label="Successiva">→</button>
+</div>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
