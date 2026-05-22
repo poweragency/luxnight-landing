@@ -593,12 +593,13 @@ em { font-style: italic; font-family: var(--font-display); }
 
 /* Ornament between the two prose blocks of "Il luogo" */
 .prose-divider {
-  margin: 36px 0;
+  margin: 40px 0;
   text-align: center;
   opacity: .9;
 }
 .prose-divider .ornament {
-  margin: 0;
+  display: block;
+  margin: 0 auto; /* keep horizontal auto so the glyph stays centred */
 }
 
 /* ============ Map frame ============ */
@@ -1475,8 +1476,8 @@ body.legal::before, body.legal::after { display: none; }
 
   /* Più aria tra paragrafi nelle sezioni split su mobile */
   .split__text .prose { font-size: 1.05rem; line-height: 1.75; margin: 0 0 24px; }
-  .prose-divider { margin: 28px 0; }
-  .prose-divider .ornament { width: 56px; opacity: .7; }
+  .prose-divider { margin: 32px 0; }
+  .prose-divider .ornament { opacity: .75; } /* mantiene width default 72px, sempre centrato */
   #luogo .split__text .prose:first-of-type::first-letter { font-size: 3em; padding-right: 0.12em; }
 
   /* Bottom action bar + newsletter (mobile) */
