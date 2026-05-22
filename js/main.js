@@ -6,22 +6,26 @@
   const ageYes  = document.getElementById('age-yes');
   const KEY = 'luxnight_age_ok';
 
-  if (sessionStorage.getItem(KEY) === '1') {
-    ageGate.classList.add('is-hidden');
-  } else {
-    document.body.style.overflow = 'hidden';
+  if (ageGate) {
+    if (sessionStorage.getItem(KEY) === '1') {
+      ageGate.classList.add('is-hidden');
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
+    ageYes?.addEventListener('click', () => {
+      sessionStorage.setItem(KEY, '1');
+      ageGate.classList.add('is-hidden');
+      document.body.style.overflow = '';
+    });
   }
-  ageYes?.addEventListener('click', () => {
-    sessionStorage.setItem(KEY, '1');
-    ageGate.classList.add('is-hidden');
-    document.body.style.overflow = '';
-  });
 
   /* ---------- Header on scroll ---------- */
   const header = document.getElementById('site-header');
-  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 30);
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+  if (header) {
+    const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 30);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
 
   /* ---------- Mobile nav ---------- */
   const nav = document.getElementById('nav');
@@ -226,52 +230,54 @@
   });
 
   /* ---------- Lightbox ---------- */
-  const items = Array.from(document.querySelectorAll('[data-lightbox]'));
   const lightbox = document.getElementById('lightbox');
-  const lbImg   = lightbox.querySelector('.lightbox__img');
-  const lbPrev  = lightbox.querySelector('.lightbox__prev');
-  const lbNext  = lightbox.querySelector('.lightbox__next');
-  const lbClose = lightbox.querySelector('.lightbox__close');
-  let idx = 0;
+  if (lightbox) {
+    const items   = Array.from(document.querySelectorAll('[data-lightbox]'));
+    const lbImg   = lightbox.querySelector('.lightbox__img');
+    const lbPrev  = lightbox.querySelector('.lightbox__prev');
+    const lbNext  = lightbox.querySelector('.lightbox__next');
+    const lbClose = lightbox.querySelector('.lightbox__close');
+    let idx = 0;
 
-  const show = (i) => {
-    idx = (i + items.length) % items.length;
-    const a = items[idx];
-    lbImg.src = a.getAttribute('href');
-    lbImg.alt = a.querySelector('img')?.alt || '';
-  };
-  const open  = (i) => {
-    show(i);
-    lightbox.classList.add('is-open');
-    lightbox.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  };
-  const close = () => {
-    lightbox.classList.remove('is-open');
-    lightbox.setAttribute('aria-hidden', 'true');
-    lbImg.src = '';
-    document.body.style.overflow = '';
-  };
+    const show = (i) => {
+      idx = (i + items.length) % items.length;
+      const a = items[idx];
+      lbImg.src = a.getAttribute('href');
+      lbImg.alt = a.querySelector('img')?.alt || '';
+    };
+    const open  = (i) => {
+      show(i);
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+    const close = () => {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lbImg.src = '';
+      document.body.style.overflow = '';
+    };
 
-  items.forEach((a, i) => a.addEventListener('click', (e) => { e.preventDefault(); open(i); }));
-  lbPrev.addEventListener('click', () => show(idx - 1));
-  lbNext.addEventListener('click', () => show(idx + 1));
-  lbClose.addEventListener('click', close);
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
-  document.addEventListener('keydown', (e) => {
-    if (!lightbox.classList.contains('is-open')) return;
-    if (e.key === 'Escape')     close();
-    if (e.key === 'ArrowLeft')  show(idx - 1);
-    if (e.key === 'ArrowRight') show(idx + 1);
-  });
+    items.forEach((a, i) => a.addEventListener('click', (e) => { e.preventDefault(); open(i); }));
+    lbPrev?.addEventListener('click', () => show(idx - 1));
+    lbNext?.addEventListener('click', () => show(idx + 1));
+    lbClose?.addEventListener('click', close);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('is-open')) return;
+      if (e.key === 'Escape')     close();
+      if (e.key === 'ArrowLeft')  show(idx - 1);
+      if (e.key === 'ArrowRight') show(idx + 1);
+    });
 
-  /* swipe on mobile */
-  let touchX = null;
-  lightbox.addEventListener('touchstart', (e) => { touchX = e.changedTouches[0].clientX; }, { passive: true });
-  lightbox.addEventListener('touchend',   (e) => {
-    if (touchX === null) return;
-    const dx = e.changedTouches[0].clientX - touchX;
-    if (Math.abs(dx) > 40) show(idx + (dx < 0 ? 1 : -1));
-    touchX = null;
-  }, { passive: true });
+    /* swipe on mobile */
+    let touchX = null;
+    lightbox.addEventListener('touchstart', (e) => { touchX = e.changedTouches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend',   (e) => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 40) show(idx + (dx < 0 ? 1 : -1));
+      touchX = null;
+    }, { passive: true });
+  }
 })();
