@@ -48,12 +48,18 @@
 
     const setOpen = (open) => {
       btn.setAttribute('aria-expanded', String(open));
-      langSwitch.setAttribute('data-open', String(open));
       if (open) {
         if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+        // 1) take it out of [hidden] so it can transition (starts at opacity:0)
         menu.hidden = false;
+        // 2) force a reflow so the browser sees the initial state
+        void menu.offsetWidth;
+        // 3) flip data-open → CSS transitions opacity/transform
+        requestAnimationFrame(() => {
+          langSwitch.setAttribute('data-open', 'true');
+        });
       } else {
-        // delay hiding until the fade-out transition has played
+        langSwitch.setAttribute('data-open', 'false');
         hideTimer = setTimeout(() => { menu.hidden = true; hideTimer = null; }, 260);
       }
     };
@@ -77,7 +83,41 @@
   if (y) y.textContent = new Date().getFullYear();
 
   /* ---------- Club status (live aperto/chiuso) ---------- */
-  const DAY_NAMES = ['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+  const LANG = (document.documentElement.lang || 'it').slice(0, 2).toLowerCase();
+  const I18N_STATUS = {
+    it: {
+      days: ['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'],
+      open:   'Aperto stanotte',
+      closed: 'Chiuso ora',
+      closes: (hm) => `Chiude alle ${hm}`,
+      inMin:  (m)  => `Apre tra ${m}m`,
+      inH:    (h, m) => `Apre tra ${h}h ${String(m).padStart(2,'0')}m`,
+      today:  () => 'Apre oggi alle 22:00',
+      onDay:  (d) => `Apre ${d} alle 22:00`,
+    },
+    en: {
+      days: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+      open:   'Open tonight',
+      closed: 'Closed now',
+      closes: (hm) => `Closes at ${hm}`,
+      inMin:  (m)  => `Opens in ${m}m`,
+      inH:    (h, m) => `Opens in ${h}h ${String(m).padStart(2,'0')}m`,
+      today:  () => 'Opens today at 22:00',
+      onDay:  (d) => `Opens ${d} at 22:00`,
+    },
+    de: {
+      days: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+      open:   'Heute Nacht geöffnet',
+      closed: 'Jetzt geschlossen',
+      closes: (hm) => `Schliesst um ${hm}`,
+      inMin:  (m)  => `Öffnet in ${m}m`,
+      inH:    (h, m) => `Öffnet in ${h}h ${String(m).padStart(2,'0')}m`,
+      today:  () => 'Öffnet heute um 22:00',
+      onDay:  (d) => `Öffnet am ${d} um 22:00`,
+    },
+  };
+  const T = I18N_STATUS[LANG] || I18N_STATUS.it;
+
   const INTERVALS = [
     { start: 3 * 1440 + 22 * 60, end: 4 * 1440 + 4 * 60 },
     { start: 4 * 1440 + 22 * 60, end: 5 * 1440 + 4 * 60 },
@@ -98,11 +138,8 @@
         const endMSS = inside ? i.end : i.end - 7 * 1440;
         const closeH = Math.floor(endMSS / 60) % 24;
         const closeM = endMSS % 60;
-        return {
-          open: true,
-          label: 'Aperto stanotte',
-          sub: `Chiude alle ${String(closeH).padStart(2,'0')}:${String(closeM).padStart(2,'0')}`,
-        };
+        const hm = `${String(closeH).padStart(2,'0')}:${String(closeM).padStart(2,'0')}`;
+        return { open: true, label: T.open, sub: T.closes(hm) };
       }
     }
 
@@ -117,12 +154,12 @@
     const mins  = minDelta % 60;
 
     let sub;
-    if (hours < 1)       sub = `Apre tra ${mins}m`;
-    else if (hours < 6)  sub = `Apre tra ${hours}h ${String(mins).padStart(2,'0')}m`;
-    else if (hours < 18) sub = `Apre oggi alle 22:00`;
-    else                 sub = `Apre ${DAY_NAMES[nextDay]} alle 22:00`;
+    if (hours < 1)       sub = T.inMin(mins);
+    else if (hours < 6)  sub = T.inH(hours, mins);
+    else if (hours < 18) sub = T.today();
+    else                 sub = T.onDay(T.days[nextDay]);
 
-    return { open: false, label: 'Chiuso ora', sub };
+    return { open: false, label: T.closed, sub };
   };
 
   const statusEl = document.getElementById('club-status');
