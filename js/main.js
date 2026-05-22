@@ -43,6 +43,69 @@
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
+  /* ---------- Club status (live aperto/chiuso) ---------- */
+  const DAY_NAMES = ['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+  const INTERVALS = [
+    { start: 3 * 1440 + 22 * 60, end: 4 * 1440 + 4 * 60 },
+    { start: 4 * 1440 + 22 * 60, end: 5 * 1440 + 4 * 60 },
+    { start: 5 * 1440 + 22 * 60, end: 6 * 1440 + 5 * 60 },
+    { start: 6 * 1440 + 22 * 60, end: 7 * 1440 + 5 * 60 },
+  ];
+
+  const zurichNow = () => new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Zurich' }));
+
+  const computeStatus = () => {
+    const now = zurichNow();
+    const nowMSS = now.getDay() * 1440 + now.getHours() * 60 + now.getMinutes();
+
+    for (const i of INTERVALS) {
+      const inside  = nowMSS >= i.start && nowMSS < i.end;
+      const wrapped = (nowMSS + 7 * 1440) >= i.start && (nowMSS + 7 * 1440) < i.end;
+      if (inside || wrapped) {
+        const endMSS = inside ? i.end : i.end - 7 * 1440;
+        const closeH = Math.floor(endMSS / 60) % 24;
+        const closeM = endMSS % 60;
+        return {
+          open: true,
+          label: 'Aperto stanotte',
+          sub: `Chiude alle ${String(closeH).padStart(2,'0')}:${String(closeM).padStart(2,'0')}`,
+        };
+      }
+    }
+
+    let minDelta = Infinity, nextStart = null;
+    for (const i of INTERVALS) {
+      let delta = i.start - nowMSS;
+      if (delta <= 0) delta += 7 * 1440;
+      if (delta < minDelta) { minDelta = delta; nextStart = i.start; }
+    }
+    const nextDay = Math.floor(nextStart / 1440) % 7;
+    const hours = Math.floor(minDelta / 60);
+    const mins  = minDelta % 60;
+
+    let sub;
+    if (hours < 1)       sub = `Apre tra ${mins}m`;
+    else if (hours < 6)  sub = `Apre tra ${hours}h ${String(mins).padStart(2,'0')}m`;
+    else if (hours < 18) sub = `Apre oggi alle 22:00`;
+    else                 sub = `Apre ${DAY_NAMES[nextDay]} alle 22:00`;
+
+    return { open: false, label: 'Chiuso ora', sub };
+  };
+
+  const statusEl = document.getElementById('club-status');
+  const updateStatus = () => {
+    if (!statusEl) return;
+    const s = computeStatus();
+    statusEl.classList.toggle('is-open', s.open);
+    statusEl.removeAttribute('data-loading');
+    const label = statusEl.querySelector('.club-status__label');
+    const sub   = statusEl.querySelector('.club-status__sub');
+    if (label) label.textContent = s.label;
+    if (sub)   sub.textContent   = s.sub;
+  };
+  updateStatus();
+  setInterval(updateStatus, 60 * 1000);
+
   /* ---------- Reveal on scroll ---------- */
   const targets = document.querySelectorAll(
     '.section__title, .prose, .room, .carta__col, .gallery__item, .split__text, .split__media, .meta-list, .contact-block, .hours, .footer__grid, .rule--gold'
