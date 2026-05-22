@@ -68,11 +68,11 @@ em { font-style: italic; font-family: var(--font-display); }
 .section__title {
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: clamp(2.2rem, 4.5vw + .5rem, 4.6rem);
-  line-height: 1.05;
-  letter-spacing: -.01em;
+  font-size: clamp(1.8rem, 3vw + .4rem, 3rem);
+  line-height: 1.1;
+  letter-spacing: -.005em;
   color: var(--cream);
-  margin: 0 0 32px;
+  margin: 0 0 28px;
 }
 
 .prose {
