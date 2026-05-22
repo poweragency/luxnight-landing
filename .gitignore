@@ -14,6 +14,10 @@ desktop.ini
 __pycache__/
 *.pyc
 
+# Node tools for image conversion etc — local-only
+tools/node_modules/
+tools/package-lock.json
+
 # Logs / temp
 *.log
 *.tmp
