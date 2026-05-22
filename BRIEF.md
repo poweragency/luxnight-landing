@@ -140,33 +140,33 @@ Sezioni minime per il sito Lux Night:
 
 ```
 LUXNIGHT/
-├── BRIEF.md                   ← questo file
+├── index.html                 ← entry point del sito
+├── css/style.css
+├── js/main.js
 ├── assets/
 │   ├── foto/                  ← 16 foto fornite dal cliente (.jpg)
 │   └── menu/
 │       └── 240418 LuxNight_Menu_4pg_105x210mm_H.pdf
 ├── content/
 │   └── menu.md                ← trascrizione testuale del menù
-└── site/                      ← sito web (HTML+CSS+JS vanilla, no build)
-    ├── index.html
-    ├── css/style.css
-    └── js/main.js
+├── BRIEF.md                   ← questo file
+└── README.md
 ```
 
-### Sito web (`site/`)
-- Stack: **HTML + CSS + JS vanilla**, nessun build step, nessuna dipendenza npm. Hosting compatibile con qualsiasi static host (Netlify, Vercel, GitHub Pages, hosting tradizionale).
-- **One-page** con disclaimer 18+ all'apertura (memorizzato per la sessione in `sessionStorage`).
-- Sezioni implementate: Hero, Il locale, Gallery (con lightbox), Menu, Privé, Eventi, Prenota, Contatti & mappa, Footer.
-- Mobile-first, responsive, dark theme con palette viola/magenta + bianco.
-- Tipografia: **Bungee Outline** (display, logo neon) + **Inter** (body) da Google Fonts.
+### Sito web
+- Stack: **HTML + CSS + JS vanilla**, nessun build step, nessuna dipendenza npm. Compatibile con qualsiasi static host (GitHub Pages, Netlify, Vercel, Cloudflare Pages, hosting tradizionale).
+- File del sito in **root** del repo → deploy diretto via GitHub Pages.
+- **One-page** con age gate 18+ all'apertura (memorizzato per la sessione in `sessionStorage`).
+- Sezioni: Hero, Manifesto, Il luogo, Le sale (I/II/III/IV), La carta, Frammenti (gallery), Per essere ospiti, Orari + mappa, Footer.
+- Mobile-first, responsive, estetica private members club.
+- Tipografia: **Cormorant Garamond** (display) + **Inter** (body) da Google Fonts.
+- Foto applicate con filtro CSS B&W warm (grayscale + sepia + brightness) per uniformare l'identità.
 - SEO base: title, description, OpenGraph, JSON-LD `NightClub` con orari e indirizzo.
-- Le foto sono linkate via `../assets/foto/` (path relativi). Per il deploy basta copiare le cartelle `site/` + `assets/` mantenendo la stessa struttura.
 
 #### Test locale
 ```bash
-# dalla cartella LUXNIGHT/
 python -m http.server 8765
-# poi apri http://127.0.0.1:8765/site/
+# http://127.0.0.1:8765/
 ```
 
 ### Foto (16 file in `assets/foto/`)

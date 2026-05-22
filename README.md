@@ -7,24 +7,25 @@ Stack volutamente minimale: HTML + CSS + JavaScript vanilla, nessun build step, 
 
 ```
 .
-├── BRIEF.md            ← brief progetto, identità, contatti, fonti, contesto
-├── README.md           ← questo file
+├── index.html          ← entry point del sito
+├── css/style.css
+├── js/main.js
 ├── assets/
 │   ├── foto/           ← foto fornite dal cliente
 │   └── menu/           ← PDF originale del menù
 ├── content/
 │   └── menu.md         ← trascrizione testuale del menù
-└── site/
-    ├── index.html
-    ├── css/style.css
-    └── js/main.js
+├── BRIEF.md            ← brief progetto, identità, contatti, fonti, contesto
+└── README.md           ← questo file
 ```
+
+Il sito è in root per essere direttamente pubblicabile via **GitHub Pages** (Settings → Pages → Source `main` / `/(root)`).
 
 ## Sviluppo locale
 
 ```bash
 python -m http.server 8765
-# http://127.0.0.1:8765/site/
+# http://127.0.0.1:8765/
 ```
 
 ## Identità visiva
