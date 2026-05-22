@@ -126,6 +126,35 @@
     targets.forEach(el => el.classList.add('is-in'));
   }
 
+  /* ---------- Newsletter (AJAX submit a Formsubmit.co) ---------- */
+  const nlForm    = document.getElementById('newsletter-form');
+  const nlSuccess = document.getElementById('newsletter-success');
+  const showSuccess = () => {
+    if (!nlForm || !nlSuccess) return;
+    const row    = nlForm.querySelector('.newsletter__row');
+    const legal  = nlForm.querySelector('.newsletter__legal');
+    if (row)   row.style.display    = 'none';
+    if (legal) legal.style.display  = 'none';
+    nlSuccess.hidden = false;
+  };
+  if (new URLSearchParams(window.location.search).get('subscribed') === '1') {
+    showSuccess();
+  }
+  nlForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(nlForm.action, {
+        method: 'POST',
+        body: new FormData(nlForm),
+        headers: { 'Accept': 'application/json' },
+      });
+      if (res.ok) showSuccess();
+      else nlForm.submit();
+    } catch (err) {
+      nlForm.submit();
+    }
+  });
+
   /* ---------- Lightbox ---------- */
   const items = Array.from(document.querySelectorAll('[data-lightbox]'));
   const lightbox = document.getElementById('lightbox');
