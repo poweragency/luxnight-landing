@@ -644,25 +644,6 @@ em { font-style: italic; font-family: var(--font-display); }
 }
 .contact-block__value a { transition: color .3s var(--ease); }
 .contact-block__value a:hover { color: var(--champagne); }
-.contact-block__sub {
-  margin: 8px 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: baseline;
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: .3em;
-  text-transform: uppercase;
-}
-.contact-block__sub a {
-  color: var(--cream);
-  border-bottom: 1px solid var(--champagne);
-  padding-bottom: 1px;
-  transition: color .3s var(--ease);
-}
-.contact-block__sub a:hover { color: var(--champagne); }
-.contact-block__sub span { color: var(--taupe); }
 .disclaimer { margin-top: 32px; }
 
 /* ============ Hours ============ */
