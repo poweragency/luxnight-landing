@@ -644,6 +644,25 @@ em { font-style: italic; font-family: var(--font-display); }
 }
 .contact-block__value a { transition: color .3s var(--ease); }
 .contact-block__value a:hover { color: var(--champagne); }
+.contact-block__sub {
+  margin: 8px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: baseline;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+}
+.contact-block__sub a {
+  color: var(--cream);
+  border-bottom: 1px solid var(--champagne);
+  padding-bottom: 1px;
+  transition: color .3s var(--ease);
+}
+.contact-block__sub a:hover { color: var(--champagne); }
+.contact-block__sub span { color: var(--taupe); }
 .disclaimer { margin-top: 32px; }
 
 /* ============ Hours ============ */
@@ -840,6 +859,18 @@ em { font-style: italic; font-family: var(--font-display); }
 }
 
 @media (max-width: 768px) {
+  /* Titoli sezione: riduzione drastica per evitare wrap su 4 righe */
+  .section__title {
+    font-size: clamp(1.65rem, 7vw, 2.4rem);
+    line-height: 1.1;
+    margin: 0 0 24px;
+  }
+  .room__text h3 {
+    font-size: clamp(1.55rem, 6.5vw, 2.2rem);
+    line-height: 1.15;
+  }
+  .age-gate__title { font-size: 1.35rem; line-height: 1.25; }
+
   /* Spazi: riduzione complessiva */
   .section { padding: 72px 0; }
   .section--manifesto { padding: 88px 0; }
