@@ -1,0 +1,14 @@
+{
+  "name": "Lux Night",
+  "short_name": "Lux Night",
+  "description": "Private club · Balerna · Ticino",
+  "icons": [
+    { "src": "/assets/brand/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/brand/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/assets/brand/favicon.svg", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "theme_color": "#0A0807",
+  "background_color": "#0A0807",
+  "display": "browser",
+  "start_url": "/"
+}
