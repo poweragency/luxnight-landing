@@ -2,6 +2,12 @@
   'use strict';
 
   /* ---------- Intro overlay (Binova-style: poster + video always in DOM) ---------- */
+  // Prevent the browser from restoring a previous scroll position on
+  // refresh / back-forward navigation — the intro must always start at the top.
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
   const intro = document.getElementById('intro');
   if (intro) {
     const img   = document.getElementById('intro-img');
@@ -35,9 +41,15 @@
       intro.dataset.stage = 'done';
       intro.classList.add('is-fading');
       try { sessionStorage.setItem(KEY_INTRO, '1'); } catch {}
+      // Snap to the top BEFORE removing the overlay so the page never
+      // appears mid-section on reveal (some mobile browsers leave a
+      // residual scroll offset after the fullscreen video session).
+      window.scrollTo(0, 0);
       setTimeout(() => {
         intro.remove();
         document.body.style.overflow = '';
+        // Double-snap just in case the body-overflow toggle shifted layout
+        window.scrollTo(0, 0);
       }, 650);
     };
 
