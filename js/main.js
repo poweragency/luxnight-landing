@@ -1,18 +1,17 @@
 (() => {
   'use strict';
 
-  /* ---------- Intro overlay (poster → video → fade into the site) ---------- */
+  /* ---------- Intro overlay (Binova-style: poster + video always in DOM) ---------- */
   const intro = document.getElementById('intro');
   if (intro) {
     const img   = document.getElementById('intro-img');
     const video = document.getElementById('intro-video');
+    const door  = document.getElementById('intro-door');
     const skip  = intro.querySelector('.intro__skip');
     const KEY_INTRO = 'lux_intro_done';
 
-    // Base path: derive from the img src already in the markup
     const base = (img?.getAttribute('src') || '').replace(/door-desktop-poster\.jpg$/, '');
 
-    // Pick mobile/desktop based on viewport pixel count + orientation
     const isMobileViewport = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
@@ -21,13 +20,19 @@
       return portrait && (pixels < 1500000 || Math.min(w, h) < 600);
     };
 
-    // Swap poster to mobile version if needed (runs at load)
+    // Pre-assign both poster and video src based on current viewport.
+    // Video uses preload="auto", so it starts buffering immediately.
     if (isMobileViewport()) {
-      img.src = base + 'door-mobile-poster.jpg';
+      img.src   = base + 'door-mobile-poster.jpg';
+      video.src = base + 'door-mobile.mp4';
+    } else {
+      img.src   = base + 'door-desktop-poster.jpg';
+      video.src = base + 'door-desktop.mp4';
     }
 
     const finishIntro = () => {
       if (!intro.isConnected) return;
+      intro.dataset.stage = 'done';
       intro.classList.add('is-fading');
       try { sessionStorage.setItem(KEY_INTRO, '1'); } catch {}
       setTimeout(() => {
@@ -36,7 +41,7 @@
       }, 650);
     };
 
-    // Already watched this session? skip
+    // Already watched this session? skip the overlay entirely
     let alreadyDone = false;
     try { alreadyDone = sessionStorage.getItem(KEY_INTRO) === '1'; } catch {}
     if (alreadyDone) {
@@ -47,16 +52,15 @@
 
     const startVideo = async () => {
       try {
-        video.src = base + (isMobileViewport() ? 'door-mobile.mp4' : 'door-desktop.mp4');
-        intro.dataset.stage = 'video';
-        video.hidden = false;
+        video.currentTime = 0;
         await video.play();
+        intro.dataset.stage = 'playing';
       } catch {
         finishIntro();
       }
     };
 
-    img?.addEventListener('click', startVideo);
+    door?.addEventListener('click', startVideo);
     video?.addEventListener('ended', finishIntro);
     video?.addEventListener('error', finishIntro);
     skip?.addEventListener('click', (e) => { e.stopPropagation(); finishIntro(); });

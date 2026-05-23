@@ -21,3 +21,6 @@ tools/package-lock.json
 # Logs / temp
 *.log
 *.tmp
+
+# Reference projects (Binova etc) — local-only, never committed
+_reference/
