@@ -1323,6 +1323,43 @@ body { padding-bottom: 96px; }
   text-align: center;
 }
 
+.footer__powered {
+  margin: 14px 0 0;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.footer__powered a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--taupe);
+  padding: 4px 6px;
+  transition: color .25s var(--ease), transform .25s var(--ease);
+}
+.footer__powered a:hover { color: var(--champagne); }
+.footer__powered-icon {
+  width: 12px;
+  height: 12px;
+  color: var(--champagne);
+  flex: 0 0 auto;
+  transition: transform .35s var(--ease);
+}
+.footer__powered a:hover .footer__powered-icon {
+  transform: rotate(-8deg) scale(1.1);
+}
+.footer__powered strong {
+  color: var(--cream);
+  font-weight: 600;
+  letter-spacing: .34em;
+  transition: color .25s var(--ease);
+}
+.footer__powered a:hover strong { color: var(--champagne); }
+
 /* ============ Legal pages ============ */
 body.legal { background: var(--black); }
 body.legal::before, body.legal::after { display: none; }
