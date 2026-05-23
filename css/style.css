@@ -908,10 +908,14 @@ em { font-style: italic; font-family: var(--font-display); }
   position: absolute !important;
   top: 0; left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100vh;           /* fallback for older browsers */
+  height: 100dvh;          /* dynamic viewport: follows mobile chrome */
   max-width: none !important;
   object-fit: cover;
-  object-position: center;
+  /* keep the Lux Night neon + arch visible when the viewport AR
+     forces a vertical crop. We anchor the focal point near the top
+     quarter — any cropping happens on the floor instead. */
+  object-position: 50% 28%;
   display: block;
   transition: opacity .35s ease;
 }
@@ -926,6 +930,7 @@ em { font-style: italic; font-family: var(--font-display); }
   inset: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   background: transparent;
   border: 0;
   padding: 0;
@@ -984,7 +989,8 @@ em { font-style: italic; font-family: var(--font-display); }
 .intro__cta {
   position: absolute;
   left: 50%;
-  bottom: clamp(48px, 9vh, 96px);
+  /* Lift above the iOS home indicator / Android gesture bar via safe-area */
+  bottom: calc(clamp(48px, 9vh, 96px) + env(safe-area-inset-bottom));
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
@@ -992,7 +998,6 @@ em { font-style: italic; font-family: var(--font-display); }
   gap: 14px;
   text-align: center;
   pointer-events: none;
-  padding-bottom: env(safe-area-inset-bottom);
   z-index: 3;
 }
 .intro__cta-line {
@@ -1056,7 +1061,10 @@ em { font-style: italic; font-family: var(--font-display); }
 
 @media (max-width: 768px) {
   .intro__target { width: 76px; height: 76px; top: 50%; }
-  .intro__cta { gap: 10px; bottom: clamp(36px, 7vh, 64px); }
+  .intro__cta {
+    gap: 10px;
+    bottom: calc(clamp(56px, 9vh, 96px) + env(safe-area-inset-bottom));
+  }
   .intro__cta-text { font-size: 1.1rem; letter-spacing: .32em; }
   .intro__cta-sub  { font-size: 9px; letter-spacing: .36em; }
   .intro__cta-line { width: 40px; }
