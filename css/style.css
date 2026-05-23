@@ -907,33 +907,35 @@ em { font-style: italic; font-family: var(--font-display); }
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #000;
   border: 0;
   cursor: pointer;
   overflow: hidden;
   outline: 0;
   -webkit-appearance: none;
   appearance: none;
+  background: #000 url('../assets/intro/door-desktop-poster.jpg') center/cover no-repeat;
+  background-image: image-set(
+    url('../assets/intro/door-desktop-poster.avif') type('image/avif'),
+    url('../assets/intro/door-desktop-poster.webp') type('image/webp'),
+    url('../assets/intro/door-desktop-poster.jpg')
+  );
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #000;
+  transition: filter .4s var(--ease);
 }
-.intro__poster {
-  position: absolute;
-  inset: 0;
-  display: block;
+@media (orientation: portrait) {
+  .intro__door {
+    background-image: url('../assets/intro/door-mobile-poster.jpg');
+    background-image: image-set(
+      url('../assets/intro/door-mobile-poster.avif') type('image/avif'),
+      url('../assets/intro/door-mobile-poster.webp') type('image/webp'),
+      url('../assets/intro/door-mobile-poster.jpg')
+    );
+  }
 }
-.intro__poster img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 4s var(--ease), filter .4s var(--ease);
-  transform: scale(1.02);
-}
-.intro__door:hover .intro__poster img,
-.intro__door:focus-visible .intro__poster img {
-  transform: scale(1.04);
-  filter: brightness(1.06);
-}
+.intro__door:hover { filter: brightness(1.05); }
 
 .intro__hint {
   position: absolute;
