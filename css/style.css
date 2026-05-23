@@ -1529,15 +1529,24 @@ body.legal::before, body.legal::after { display: none; }
   .nav-toggle { display: flex; }
   .nav {
     position: fixed;
-    inset: 60px 0 0 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
     flex-direction: column;
     background: var(--black);
-    padding: 56px 28px;
+    /* Top padding clears the fixed header (z-index 50 sits on top) */
+    padding: calc(64px + env(safe-area-inset-top)) 28px calc(40px + env(safe-area-inset-bottom));
     gap: 28px;
     align-items: flex-start;
     transform: translateX(100%);
     transition: transform .45s var(--ease);
-    border-top: 1px solid var(--line-soft);
+    z-index: 49;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .nav.is-open { transform: translateX(0); }
   .nav a {
