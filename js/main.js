@@ -1,6 +1,74 @@
 (() => {
   'use strict';
 
+  /* ---------- Intro overlay (door → video → fade into the site) ---------- */
+  const intro = document.getElementById('intro');
+  if (intro) {
+    const door  = intro.querySelector('.intro__door');
+    const video = document.getElementById('intro-video');
+    const skip  = intro.querySelector('.intro__skip');
+    const KEY_INTRO = 'lux_intro_done';
+
+    const introBaseFromHTML = () => {
+      // Walk up: <img src="…/door-desktop-poster.jpg"> tells us the prefix
+      const img = intro.querySelector('.intro__poster img');
+      const m = (img?.getAttribute('src') || '').match(/^(.*?door-)/);
+      return m ? m[1].replace(/door-$/, '') : 'assets/intro/';
+    };
+    const INTRO_BASE = introBaseFromHTML();
+
+    /* Pick mobile/desktop based on viewport pixel count + orientation,
+       same approach as the Binova project: small portrait viewports get
+       the 9:16 cut, everything else (incl. tablets landscape and desktop)
+       gets the 16:9 (or in our case, the "desktop" file). */
+    const pickVideoSrc = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const pixels = w * h;
+      const portrait = h > w;
+      const isSmallPortrait = portrait && (pixels < 1500000 || Math.min(w, h) < 600);
+      return INTRO_BASE + (isSmallPortrait ? 'door-mobile.mp4' : 'door-desktop.mp4');
+    };
+
+    const finishIntro = () => {
+      if (!intro.isConnected) return;
+      intro.classList.add('is-fading');
+      try { sessionStorage.setItem(KEY_INTRO, '1'); } catch {}
+      setTimeout(() => {
+        intro.remove();
+        document.body.style.overflow = '';
+      }, 650);
+    };
+
+    // Already watched this session? skip
+    let skipped = false;
+    try { skipped = sessionStorage.getItem(KEY_INTRO) === '1'; } catch {}
+    if (skipped) {
+      intro.remove();
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
+
+    door?.addEventListener('click', async () => {
+      try {
+        video.src = pickVideoSrc();
+        intro.dataset.stage = 'video';
+        video.hidden = false;
+        // Force a play (autoplay rules: muted + playsinline already set)
+        await video.play();
+      } catch (err) {
+        finishIntro();
+      }
+    });
+
+    video?.addEventListener('ended', finishIntro);
+    video?.addEventListener('error', finishIntro);
+    skip?.addEventListener('click', finishIntro);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && intro.isConnected) finishIntro();
+    });
+  }
+
   /* ---------- Header on scroll ---------- */
   const header = document.getElementById('site-header');
   if (header) {

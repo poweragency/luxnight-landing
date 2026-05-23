@@ -44,7 +44,7 @@
 <link rel="preload" as="image" href="../assets/foto/5800914063163330411.webp" type="image/webp" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Italiana&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="../css/style.css?v=22">
+<link rel="stylesheet" href="../css/style.css?v=23">
 
 <script type="application/ld+json">
 {
@@ -99,6 +99,25 @@
 </script>
 </head>
 <body>
+
+<!-- Intro -->
+<div class="intro" id="intro" data-stage="door" aria-label="Zum Eintreten tippen">
+  <button class="intro__door" type="button" aria-label="Eingang Lux Night">
+    <picture class="intro__poster">
+      <source type="image/avif" media="(orientation: portrait)" srcset="../assets/intro/door-mobile-poster.avif">
+      <source type="image/webp" media="(orientation: portrait)" srcset="../assets/intro/door-mobile-poster.webp">
+      <source type="image/avif" srcset="../assets/intro/door-desktop-poster.avif">
+      <source type="image/webp" srcset="../assets/intro/door-desktop-poster.webp">
+      <img src="../assets/intro/door-desktop-poster.jpg" alt="Eingang Lux Night">
+    </picture>
+    <span class="intro__hint">Zum Eintreten tippen</span>
+  </button>
+
+  <video class="intro__video" id="intro-video" playsinline muted preload="metadata" hidden></video>
+
+  <button class="intro__skip" type="button" aria-label="Überspringen">Überspringen</button>
+</div>
+
 
 </div>
 
@@ -510,6 +529,6 @@
   <button class="lightbox__next" aria-label="Nächstes">→</button>
 </div>
 
-<script src="../js/main.js?v=22" defer></script>
+<script src="../js/main.js?v=23" defer></script>
 </body>
 </html>
