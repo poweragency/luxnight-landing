@@ -938,29 +938,128 @@ em { font-style: italic; font-family: var(--font-display); }
 }
 .intro[data-stage="playing"] .intro__door { display: none; }
 
-.intro__hint {
+/* Breathing target — pulsing ring + dot drawing the eye to the door */
+.intro__target {
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  width: 96px;
+  height: 96px;
+  pointer-events: none;
+  z-index: 3;
+}
+.intro__target-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 168, 107, 0.55);
+  background: rgba(10, 8, 7, 0.15);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  animation: introBreathe 2.6s var(--ease) infinite;
+}
+.intro__target-dot {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--champagne);
+  box-shadow:
+    0 0 0 6px rgba(201, 168, 107, 0.10),
+    0 0 24px rgba(201, 168, 107, 0.65);
+}
+@keyframes introBreathe {
+  0%, 100% { transform: scale(1);    opacity: .55; }
+  50%      { transform: scale(1.18); opacity: 1; }
+}
+.intro__door:hover .intro__target-ring,
+.intro__door:focus-visible .intro__target-ring {
+  border-color: var(--champagne);
+}
+
+/* CTA cluster — line + main label + subtitle, bottom centred */
+.intro__cta {
+  position: absolute;
+  left: 50%;
   bottom: clamp(48px, 9vh, 96px);
-  margin: 0 auto;
-  width: max-content;
-  padding: 10px 22px;
-  font-family: var(--font-sans);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: .32em;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  pointer-events: none;
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 3;
+}
+.intro__cta-line {
+  display: block;
+  width: 56px;
+  height: 1px;
+  background: rgba(201, 168, 107, 0.85);
+  transition: width .7s var(--ease), background .5s var(--ease);
+}
+.intro__door:hover .intro__cta-line,
+.intro__door:focus-visible .intro__cta-line {
+  width: 110px;
+}
+.intro__cta-text {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.15rem, 1.6vw + .2rem, 1.55rem);
+  letter-spacing: .36em;
   text-transform: uppercase;
   color: var(--cream);
-  background: rgba(10,8,7,.45);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(201,168,107,.35);
-  pointer-events: none;
-  animation: introHint 2.6s var(--ease) infinite;
+  transition: color .5s var(--ease);
+  text-shadow: 0 1px 12px rgba(0,0,0,.65);
 }
-@keyframes introHint {
-  0%, 100% { opacity: .65; transform: translateY(0); }
-  50%      { opacity: 1;   transform: translateY(-2px); }
+.intro__door:hover .intro__cta-text,
+.intro__door:focus-visible .intro__cta-text { color: var(--champagne); }
+.intro__cta-sub {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+  color: rgba(237, 230, 214, 0.65);
+  text-shadow: 0 1px 8px rgba(0,0,0,.7);
+}
+
+/* Subtle vignette / radial glow centred on the door to attract the eye */
+.intro__door::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at 50% 50%,
+      rgba(201, 168, 107, 0.10) 0%,
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(10, 8, 7, 0)    0%,
+      rgba(10, 8, 7, 0)   55%,
+      rgba(10, 8, 7, 0.7) 100%
+    );
+  pointer-events: none;
+  z-index: 1;
+  animation: introGlow 4s ease-in-out infinite alternate;
+}
+@keyframes introGlow {
+  from { opacity: .75; }
+  to   { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .intro__target { width: 76px; height: 76px; top: 50%; }
+  .intro__cta { gap: 10px; bottom: clamp(36px, 7vh, 64px); }
+  .intro__cta-text { font-size: 1.1rem; letter-spacing: .32em; }
+  .intro__cta-sub  { font-size: 9px; letter-spacing: .36em; }
+  .intro__cta-line { width: 40px; }
 }
 
 .intro[data-stage="playing"] .intro__hint { display: none; }
