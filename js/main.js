@@ -1,34 +1,30 @@
 (() => {
   'use strict';
 
-  /* ---------- Intro overlay (door → video → fade into the site) ---------- */
+  /* ---------- Intro overlay (poster → video → fade into the site) ---------- */
   const intro = document.getElementById('intro');
   if (intro) {
-    const door  = intro.querySelector('.intro__door');
+    const img   = document.getElementById('intro-img');
     const video = document.getElementById('intro-video');
     const skip  = intro.querySelector('.intro__skip');
     const KEY_INTRO = 'lux_intro_done';
 
-    const introBaseFromHTML = () => {
-      // Walk up: <img src="…/door-desktop-poster.jpg"> tells us the prefix
-      const img = intro.querySelector('.intro__poster img');
-      const m = (img?.getAttribute('src') || '').match(/^(.*?door-)/);
-      return m ? m[1].replace(/door-$/, '') : 'assets/intro/';
-    };
-    const INTRO_BASE = introBaseFromHTML();
+    // Base path: derive from the img src already in the markup
+    const base = (img?.getAttribute('src') || '').replace(/door-desktop-poster\.jpg$/, '');
 
-    /* Pick mobile/desktop based on viewport pixel count + orientation,
-       same approach as the Binova project: small portrait viewports get
-       the 9:16 cut, everything else (incl. tablets landscape and desktop)
-       gets the 16:9 (or in our case, the "desktop" file). */
-    const pickVideoSrc = () => {
+    // Pick mobile/desktop based on viewport pixel count + orientation
+    const isMobileViewport = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
-      const pixels = w * h;
       const portrait = h > w;
-      const isSmallPortrait = portrait && (pixels < 1500000 || Math.min(w, h) < 600);
-      return INTRO_BASE + (isSmallPortrait ? 'door-mobile.mp4' : 'door-desktop.mp4');
+      const pixels = w * h;
+      return portrait && (pixels < 1500000 || Math.min(w, h) < 600);
     };
+
+    // Swap poster to mobile version if needed (runs at load)
+    if (isMobileViewport()) {
+      img.src = base + 'door-mobile-poster.jpg';
+    }
 
     const finishIntro = () => {
       if (!intro.isConnected) return;
@@ -41,29 +37,29 @@
     };
 
     // Already watched this session? skip
-    let skipped = false;
-    try { skipped = sessionStorage.getItem(KEY_INTRO) === '1'; } catch {}
-    if (skipped) {
+    let alreadyDone = false;
+    try { alreadyDone = sessionStorage.getItem(KEY_INTRO) === '1'; } catch {}
+    if (alreadyDone) {
       intro.remove();
     } else {
       document.body.style.overflow = 'hidden';
     }
 
-    door?.addEventListener('click', async () => {
+    const startVideo = async () => {
       try {
-        video.src = pickVideoSrc();
+        video.src = base + (isMobileViewport() ? 'door-mobile.mp4' : 'door-desktop.mp4');
         intro.dataset.stage = 'video';
         video.hidden = false;
-        // Force a play (autoplay rules: muted + playsinline already set)
         await video.play();
-      } catch (err) {
+      } catch {
         finishIntro();
       }
-    });
+    };
 
+    img?.addEventListener('click', startVideo);
     video?.addEventListener('ended', finishIntro);
     video?.addEventListener('error', finishIntro);
-    skip?.addEventListener('click', finishIntro);
+    skip?.addEventListener('click', (e) => { e.stopPropagation(); finishIntro(); });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && intro.isConnected) finishIntro();
     });
