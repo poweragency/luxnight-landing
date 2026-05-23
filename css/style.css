@@ -900,7 +900,8 @@ em { font-style: italic; font-family: var(--font-display); }
 }
 
 .intro__door {
-  position: relative;
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
@@ -911,6 +912,8 @@ em { font-style: italic; font-family: var(--font-display); }
   cursor: pointer;
   overflow: hidden;
   outline: 0;
+  -webkit-appearance: none;
+  appearance: none;
 }
 .intro__poster {
   position: absolute;
