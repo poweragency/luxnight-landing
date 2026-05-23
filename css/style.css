@@ -912,12 +912,14 @@ em { font-style: italic; font-family: var(--font-display); }
   overflow: hidden;
   outline: 0;
 }
-.intro__poster,
+.intro__poster {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
 .intro__poster img {
   width: 100%;
   height: 100%;
-}
-.intro__poster img {
   display: block;
   object-fit: cover;
   object-position: center;
