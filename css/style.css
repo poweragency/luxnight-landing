@@ -216,6 +216,8 @@ em { font-style: italic; font-family: var(--font-display); }
   display: inline-flex;
   align-items: baseline;
   gap: 18px;
+  position: relative;
+  z-index: 60;          /* stays above the mobile slide-in .nav (z-index: 49) */
 }
 .brand__mark {
   font-family: var(--font-display);
@@ -326,6 +328,7 @@ em { font-style: italic; font-family: var(--font-display); }
 /* Language switcher — dropdown */
 .lang-switch {
   position: relative;
+  z-index: 60;          /* stays above the mobile slide-in .nav (z-index: 49) */
   margin-left: 20px;
   font-family: var(--font-sans);
   font-size: 10px;
@@ -414,6 +417,8 @@ em { font-style: italic; font-family: var(--font-display); }
   display: none;
   width: 46px;
   height: 46px;
+  position: relative;
+  z-index: 60;          /* stays above the slide-in .nav (z-index: 49) */
   flex-direction: column;
   justify-content: center;
   align-items: center;
